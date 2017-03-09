@@ -12,6 +12,7 @@ var sequelize = new Sequelize('foorumi', '', '', {
   storage: '../db/database.sqlite'
 });
 
+
 module.exports = {
   DataTypes: Sequelize,
   sequelize: sequelize
