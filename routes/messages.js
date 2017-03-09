@@ -10,11 +10,12 @@ var Models = require('../models');
 router.get('/:id', function(req, res, next) {
 var messageId = req.params.id;
 
-Models.Message.findById(messageId,{ include: {
-    model: Models.Reply,
-    include: {
-      model: Models.User
-    }}})
+Models.Message.findById(messageId,{ 
+  include: [{
+        all: true,
+        nested: true
+    }]
+})
 .then(function(messages){
   console.log(messages);
   res.send(messages);

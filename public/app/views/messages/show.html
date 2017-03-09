@@ -3,23 +3,23 @@
   <p>  
     <ng-pluralize
       count="message.Replies.length"
-      when="{'0': 'Ei vastauksia',
-             'one': 'Yksi vastaus',
-             'other': '{} vastausta'}">
+      when="{'0': 'Viestillä ei ole vastauksia',
+             'one': 'Viestillä on yksi vastaus',
+             'other': 'Viestillä on {} vastausta'}">
     </ng-pluralize>
   </p>
 </div>
-
-<p><b>{{message.User.username}}:</b> {{message.content}} </p>
-
+<div>
+<p><b>{{messageUser.username}}:</b> {{message.content}} </p>
+</div>
 <ul class="media-list" ng-repeat="reply in message.Replies">
   <li class="media">
     <div class="media-body">
-      <h4 class="media-heading">{{reply.User.username}}
+      <h4 class="media-heading">Käyttäjä: {{reply.User.username}}
       </h4>
 
       <p>
-        {{reply.content}}
+        Vastaus: {{reply.content}}
       </p>
 
       <p class="text-muted">

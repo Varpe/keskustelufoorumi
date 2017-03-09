@@ -1,27 +1,33 @@
 <script src="show_topic_controller.js"></script>
+<head>
+<style>
+h2 {margin-bottom: 25px;}
+h3 {font-size:100%; margin-bottom: 25px;}
+</style>
+<body>
 <div class="topicTitle" ng-controller="ShowTopicController">
   <h1>{{topicName}}</h1>
 </div>
 
   <div class="topicDescription" ng-controller="ShowTopicController">
-    {{topicDescription}}
+    <h2>{{topicDescription}}</h2>
   </div>
-
-        <div class="messageCount">
+        
+        <div class="messageCount"><h3>
           <ng-pluralize count="messageCount"
                when="{'0': 'Aihealueessa on 0 viestiä',
                      'one': 'Aihealueessa on 1 viesti',
                      'other': 'Aihealueessa on {} viestiä'}">
               {{messageCount}}
-          </ng-pluralize>
+          </ng-pluralize><h3>
         </div>
-
+        
 
 <ul class="media-list" ng-repeat="message in messages">
   <li class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <a href="#/messages/{{topic.id}}">{{message.title}}</a>
+        <a href="#/messages/{{message.id}}">{{message.title}}</a>
       </h4>
 
       <p>
@@ -52,4 +58,6 @@
   <button class="btn btn-success" ng-click="addMessage(newMessage)">Lisää viesti</button>
 </div>
 </form>
+</head>
+</body>
 

@@ -1,29 +1,15 @@
 var express = require('express');
 var router = express.Router();
+
 var Models = require('../models');
 
 // Huom! Kaikki polut alkavat polulla /users
-
-
-
-// GET /users/
-router.get('/', function(req, res, next) {
-    // Hae kaikki aihealueet tässä (Vinkki: findAll)
-    Models.User.findAll().then(function(users){
-      console.log(users);
-      res.send(users);
-    });
-});
-
-
-
-
 
 // POST /users
 router.post('/', function(req, res, next){
   // Lisää tämä käyttäjä (Vinkki: create), muista kuitenkin sitä ennen varmistaa, että käyttäjänimi ei ole jo käytössä! (Vinkki: findOne)
   var userToAdd = req.body;
-/*
+
   Models.User.findOne({
     where: { username: userToAdd.username }
   }).then(function(user){
@@ -31,16 +17,15 @@ router.post('/', function(req, res, next){
       res.status(400).json({ 
         error: 'Käyttäjätunnus käytössä!' });
     }else{
-      */
+      
     Models.User.create(userToAdd).then(function(user){
     console.log(user);
     req.session.userId = user.id;
     res.send(user);
-    
+    })
+    }
   })
 });
-
-
 
 // POST /users/authenticate
 router.post('/authenticate', function(req, res, next){
@@ -86,7 +71,6 @@ router.get('/logged-in', function(req, res, next){
     });
   }
 });
-
 
 // GET /users/logout
 router.get('/logout', function(req, res, next){
