@@ -1,42 +1,55 @@
-<div class="page-header">
-  <h1>Aihealueen nimi tähän</h1>
+<script src="show_topic_controller.js"></script>
+<div class="topicTitle" ng-controller="ShowTopicController">
+  <h1>{{topicName}}</h1>
 </div>
 
-<p>
-  Aihealueen kuvaus tähän
-</p>
+  <div class="topicDescription" ng-controller="ShowTopicController">
+    {{topicDescription}}
+  </div>
 
-<h2>1 viesti</h2>
+        <div class="messageCount">
+          <ng-pluralize count="messageCount"
+               when="{'0': 'Aihealueessa on 0 viestiä',
+                     'one': 'Aihealueessa on 1 viesti',
+                     'other': 'Aihealueessa on {} viestiä'}">
+              {{messageCount}}
+          </ng-pluralize>
+        </div>
 
-<ul class="media-list">
+
+<ul class="media-list" ng-repeat="message in messages">
   <li class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <a href="#/messages/1">Viestin otsikko</a>
+        <a href="#/messages/{{topic.id}}">{{message.title}}</a>
       </h4>
 
       <p>
-        Viestin sisältö
+       {{message.content}}
       </p>
 
       <p class="text-muted">
-        Käyttäjätunnus tähän, 1.1.2015 12:00
+        {{message.User.username}}, {{message.createdAt | date:'dd.MM.yyyy HH:mm'}}
       </p>
     </div>
   </li>
 </ul>
 
+
+<div ng-show="userLoggedIn">
 <h2>Lisää oma viestisi</h2>
 
 <form>
   <div class="form-group">
     <label>Otsikko</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" ng-model="newMessage.title">
   </div>
 
   <div class="form-group">
     <label>Viesti</label>
-    <textarea class="form-control"></textarea>
+    <textarea class="form-control" ng-model="newMessage.content"></textarea>
   </div>
-  <button class="btn btn-success">Lisää viesti</button>
+  <button class="btn btn-success" ng-click="addMessage(newMessage)">Lisää viesti</button>
+</div>
 </form>
+

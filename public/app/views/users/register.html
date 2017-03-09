@@ -1,22 +1,24 @@
-<div class="page-header">
+<script src="users_controller.js"></script>
+
+<div class="page-header" ng-controller="UsersController">
   <h1>Rekisteröidy</h1>
 </div>
 
 <form>
   <div class="form-group">
     <label>Käyttäjätunnus</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" ng-model="newUser.username">
   </div>
 
   <div class="form-group">
     <label>Salasana</label>
-    <input type="text" class="form-control">
+    <input type="password" class="form-control" ng-model="newUser.password">
   </div>
 
   <div class="form-group">
     <label>Salasana uudelleen</label>
-    <input type="text" class="form-control">
+    <input type="password" class="form-control">
   </div>
 
-  <button class="btn btn-success">Rekisteröidy</button>
+  <button class="btn btn-success" ng-click="register(newUser)">Rekisteröidy</button>
 </form>

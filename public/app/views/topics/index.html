@@ -1,32 +1,23 @@
+<script src="topics_list_controller.js"></script>
 <div class="page-header">
   <h1>Aihealueet</h1>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default" ng-repeat="topic in topics">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <a href="#/topics/1">Kissojen hoito</a>
+      <a href="#/topics/{{topic.id}}">{{topic.name}}</a>
     </h3>
   </div>
   <div class="panel-body">
-    Tämä aihealue käsittelee kissojen hoitoa
+    {{topic.description}}
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      <a href="#/topics/1">Express vinkit</a>
-    </h3>
-  </div>
-  <div class="panel-body">
-    Tämä aihealue käsittelee Express-sovelluskehystä
-  </div>
-</div>
 
-<h2>Lisää oma aihealueesi</h2>
-
+<div ng-show="userLoggedIn">
 <form>
+  <h2>Lisää oma aihealueesi </h2>
   <div class="form-group">
     <label>Nimi</label>
     <input type="text" class="form-control" ng-model="newTopic.name">
@@ -36,5 +27,7 @@
     <label>Kuvaus</label>
     <textarea class="form-control" ng-model="newTopic.description"></textarea>
   </div>
-  <button class="btn btn-success" ng-click="addTopic()">Lisää viesti</button>
+  <button class="btn btn-success" ng-click="addTopic(newTopic)">Lisää uusi aihealue</button>
 </form>
+</div>
+
